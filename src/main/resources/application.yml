@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1/fly?characterEncoding=utf-8&useSSL=false
+  cloud:
+    config:
+      server:
+        git:
+          search-paths: /**
+          uri: https://github.com/lvzheng19940116/springCloudConfig
+      password: 19940116lvzheng
+      label: master
+      username: 18301161405@163.com
+  application:
+    name: config-server
+eureka:
+  client: 
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaudefaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/     
+  instance:
+    hostname: localhost
+  server:  #配置关闭自我保护，并按需配置Eureka Server清理无效节点的时间间隔
+    enable-self-preservation: false  # 设为false，关闭自我保护
+    eviction-interval-timer-in-ms: 4000  # 清理间隔（单位毫秒，默认是60*1000）
+
+server:
+  port: 8888
